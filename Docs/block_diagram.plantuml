@@ -1,0 +1,30 @@
+@startuml "block_diagram"
+
+frame "Mains" {
+[240V@50Hz] as Grid
+[AC-to-DC\n5/3.3 VDC] as PSU
+[Zero-cross-detection] as ZCD
+
+frame "plate"{
+[Heaters] as RES
+[Solid State Relay] as SSR
+} 
+}
+
+frame "Logic" {
+[STM32F103C8] as MCU
+[MAX31865] as MAX
+[LCD] as LCD
+[PT1000] as PT
+}
+
+Grid -> PSU
+Grid -> ZCD
+Grid -> SSR
+PSU -> MCU
+MAX -> PT
+ZCD -> MCU
+MCU <-> MAX : SPI
+MCU -> SSR : PWM
+MCU -> LCD : SPI
+@enduml
