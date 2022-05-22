@@ -11,9 +11,22 @@
  * @copyright Copyright (c) 2022
  * 
  */
+typedef struct
+{
+  float soak_ramp;
+  float soak_temp;
+  float soak_time_s;
+  float peak_ramp;
+  float peak_time_s;
+  float cool_ramp;
+} heater_settings_t;
 
 #ifndef __CLI__H__
 #define __CLI__H__
 
+void cli(char *line, heater_settings_t *settings )
+{
+        
+}
 
 #endif  //!__CLI__H__
