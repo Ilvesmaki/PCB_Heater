@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# VSCode extensions
+PCB_Heater/.vscode/extension.json
