@@ -1,5 +1,6 @@
 import argparse
 import serial
+import time
 
 def main():
     print("PCB Heater\n")
@@ -19,11 +20,15 @@ def main():
         f"Peak ramp: {args['pr']}, Peak time: {args['ptim']}, Cool ramp: {args['cr']}"))
 
     # Initialize UART
-    ser = serial.Serial('/dev/ttyUSB0', 9600)
-    # Send parameters over UART
-    ser.write(args)
+    #ser = serial.Serial('/dev/ttyUSB0', 9600)
+    ser = serial.Serial(port='COM3', baudrate=9600, bytesize=8)
 
-    # Wait for confirmation
+    # Send parameters over UART
+    for arg in args.values():
+        ser.write(bytes(arg, 'utf-8'))
+        time.sleep(0.05)
+ 
+  
 
 
 if __name__== "__main__":
